@@ -1,13 +1,24 @@
-name: Check the Front code
+name: Prettier
+
 on:
-  push
+  push:
+    branches:
+      - develop
+
+env:
+  FILE_PATTERN: "src/**/*.{ts,tsx,js,jsx}"
+
 jobs:
-  test:
-    name: Check the Front code2
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install packages
-        run: npm ci
-      - name: Prettier
-        run: npm run format
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 19.x
+      - name: Run Prettier
+        run: |
+          npx prettier --write ${FILE_PATTERN}
+      - uses: stefanzweifel/git-auto-commit-action@v3.0.0
+        with:
+          commit_message: Apply Prettier Change
