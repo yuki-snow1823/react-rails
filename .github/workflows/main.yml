@@ -8,6 +8,9 @@ on:
 env:
   FILE_PATTERN: "src/**/*.{ts,tsx,js,jsx}"
 
+on:
+  push
+
 jobs:
   lint:
     runs-on: ubuntu-latest
