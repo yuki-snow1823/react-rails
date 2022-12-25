@@ -20,3 +20,31 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v3.0.0
         with:
           commit_message: Apply Prettier Change
+
+
+name: Api Test
+
+on:
+  push
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup docker
+      shell: bash
+      run: |
+        docker-compose build
+        docker-compose run app rake db:create
+      env:
+        RAILS_ENV: test
+
+    - name: Run RSpec
+      shell: bash
+      run:  |
+        docker-compose run app bundle exec rspec
+      env:
+        RAILS_ENV: test
