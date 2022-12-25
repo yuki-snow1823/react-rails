@@ -1,4 +1,4 @@
-name: Prettier
+name: CI
 
 on:
   push
@@ -21,17 +21,8 @@ jobs:
         with:
           commit_message: Apply Prettier Change
 
-
-name: Api Test
-
-on:
-  push
-
-jobs:
   test:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup docker
