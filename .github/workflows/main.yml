@@ -1,7 +1,6 @@
 name: CI
 
-on:
-  push
+on: push
 
 env:
   FILE_PATTERN: "./frontend/app/src/**/*.{ts,tsx,js,jsx}"
@@ -24,31 +23,32 @@ jobs:
   api-test:
     runs-on: ubuntu-latest
 
-    services:
-      db:
-        image: mysql:8.0
-        env:
-          MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: root
-        ports:
-          - 3306
+    # services:
+    #   db:
+    #     image: mysql:8.0
+    #     env:
+    #       MYSQL_ROOT_PASSWORD: password
+    #       MYSQL_DATABASE: root
+    #     ports:
+    #       - 3306
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup Database
-      run: sudo /etc/init.d/mysql start
-      
-    - name: Setup docker
-      shell: bash
-      run: |
-        docker-compose build
-        docker-compose run api rails db:create
-      env:
-        RAILS_ENV: test
+      - uses: actions/checkout@v2
+      # - name: Setup Database
+      #   run: sudo /etc/init.d/mysql start
 
-    - name: Run RSpec
-      shell: bash
-      run:  |
-        docker-compose run api bundle exec rspec
-      env:
-        RAILS_ENV: test
+      - name: Setup docker
+        shell: bash
+        run: |
+          sudo /etc/init.d/mysql start
+          docker-compose build
+          docker-compose run api rails db:create
+        env:
+          RAILS_ENV: test
+
+      - name: Run RSpec
+        shell: bash
+        run: |
+          docker-compose run api bundle exec rspec
+        env:
+          RAILS_ENV: test
