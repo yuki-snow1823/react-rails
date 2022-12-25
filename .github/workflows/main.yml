@@ -23,19 +23,8 @@ jobs:
   api-test:
     runs-on: ubuntu-latest
 
-    # services:
-    #   db:
-    #     image: mysql:8.0
-    #     env:
-    #       MYSQL_ROOT_PASSWORD: password
-    #       MYSQL_DATABASE: root
-    #     ports:
-    #       - 3306
-
     steps:
       - uses: actions/checkout@v2
-      # - name: Setup Database
-      #   run: sudo /etc/init.d/mysql start
 
       - name: Setup docker
         shell: bash
