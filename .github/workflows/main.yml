@@ -31,7 +31,7 @@ jobs:
         run: |
           docker-compose build
           docker-compose up -d
-          sleep 30sec
+          sleep 30
           docker-compose run api rails db:create db:migrate
         env:
           RAILS_ENV: test
