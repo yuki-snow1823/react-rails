@@ -7,7 +7,7 @@ env:
   FILE_PATTERN: "./frontend/app/src/**/*.{ts,tsx,js,jsx}"
 
 jobs:
-  lint:
+  front-lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -19,17 +19,19 @@ jobs:
           npx prettier --write ${FILE_PATTERN}
       - uses: stefanzweifel/git-auto-commit-action@v3.0.0
         with:
-          commit_message: Apply Prettier Change
+          commit_message: Apply CI Prettier Change
 
-  test:
+  api-test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Setup docker
       shell: bash
-      run: |
-        docker-compose build
-        docker-compose run api rails db:create
+      run: docker-compose build
+    - name: sleep for waiting launch db
+      run: sleep 1m
+    - name: Setup docker
+      run: docker-compose run api rails db:create db:migrate
       env:
         RAILS_ENV: test
 
