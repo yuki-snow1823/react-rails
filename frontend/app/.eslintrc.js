@@ -24,6 +24,7 @@ module.exports = {
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off"
     },
+    "ignorePatterns": ["**/*.css", "**/*.scss"],
     "settings": {
         "react": {
             "version": "detect"
