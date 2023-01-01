@@ -21,7 +21,7 @@ jobs:
 
       - name: Run lint
         run: |
-          yarn eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ${FILE_PATTERN}
+          npx eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ${FILE_PATTERN}
 
       - name: Run Prettier
         run: |
