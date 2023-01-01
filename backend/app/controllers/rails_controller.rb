@@ -1,5 +1,5 @@
 class RailsController < ApplicationController
-  before_action :set_rail, only: %i[ show update destroy ]
+  before_action :set_rail, only: %i[show update destroy]
 
   # GET /rails
   def index
@@ -39,13 +39,14 @@ class RailsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_rail
-      @rail = Rail.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def rail_params
-      params.require(:rail).permit(:db, :migrate)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_rail
+    @rail = Rail.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def rail_params
+    params.require(:rail).permit(:db, :migrate)
+  end
 end
