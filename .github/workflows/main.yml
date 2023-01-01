@@ -15,7 +15,7 @@ jobs:
           node-version: 19.x
       - name: Run lint
         run: |
-          eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ${FILE_PATTERN}
+          yarn eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ${FILE_PATTERN}
 
       - name: Run Prettier
         run: |
