@@ -6,13 +6,17 @@ env:
   FILE_PATTERN: "./frontend/app/src/**/*.{ts,tsx,js,jsx}"
 
 jobs:
-  front-lint:
+  front:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 19.x
+      - name: Run lint
+        run: |
+          eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ${FILE_PATTERN}
+
       - name: Run Prettier
         run: |
           npx prettier --write ${FILE_PATTERN}
@@ -20,7 +24,8 @@ jobs:
         with:
           commit_message: Apply CI Prettier Change
 
-  api-test:
+
+  api:
     runs-on: ubuntu-latest
 
     steps:
