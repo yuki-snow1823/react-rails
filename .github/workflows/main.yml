@@ -13,6 +13,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 19.x
+      - name: Setup Docker
+        shell: bash
+        run: |
+          docker-compose build front
+          docker-compose up -d
+
       - name: Run lint
         run: |
           yarn eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ${FILE_PATTERN}
