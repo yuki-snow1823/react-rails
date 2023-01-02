@@ -17,12 +17,11 @@ jobs:
         shell: bash
         run: |
           docker-compose build front
-          docker-compose yarn
-          docker-compose yarn start
-          docker-compose up -d
+          docker-compose up front
 
       - name: Run lint
         run: |
+          yarn --frozen-lockfile
           yarn eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ${FILE_PATTERN}
 
       - name: Run Prettier
