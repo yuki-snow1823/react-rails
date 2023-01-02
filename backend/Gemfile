@@ -46,4 +46,7 @@ group :development do
   # gem "spring"
   gem 'rspec-rails', '~> 4.0.1', '>= 4.0.1'
   gem 'rubocop', require: false
+  gem 'graphiql-rails'
 end
+
+gem 'graphql'
