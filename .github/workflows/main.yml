@@ -15,7 +15,7 @@ jobs:
           node-version: 19.x
       - name: Run lint
         run: |
-          cd frontend 
+          cd frontend/app
           yarn install
           yarn eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ${FILE_PATTERN}
 
