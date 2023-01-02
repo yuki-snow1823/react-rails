@@ -17,7 +17,7 @@ jobs:
         run: |
           cd frontend/app
           yarn install
-          yarn eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ./src/**/*.{ts,tsx,js,jsx}
+          yarn eslint --fix --quiet --ext .jsx,.js,.tsx,.ts './src/**/*.{ts,tsx,js,jsx}'
 
       - name: Run Prettier
         run: |
