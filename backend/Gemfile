@@ -50,3 +50,6 @@ group :development do
 end
 
 gem 'graphql'
+
+# graphiql使用に必要
+gem 'sass-rails'
