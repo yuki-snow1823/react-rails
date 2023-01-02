@@ -16,7 +16,7 @@ jobs:
       - name: Run lint
         run: |
           cd frontend 
-          yarn --frozen-lockfile
+          yarn install
           yarn eslint --fix --quiet --ext .jsx,.js,.tsx,.ts ${FILE_PATTERN}
 
       - name: Run Prettier
