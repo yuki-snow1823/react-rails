@@ -6,13 +6,19 @@ env:
   FILE_PATTERN: "./frontend/app/src/**/*.{ts,tsx,js,jsx}"
 
 jobs:
-  front-lint:
+  front:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 19.x
+      - name: Run lint
+        run: |
+          cd frontend/app
+          yarn install
+          yarn eslint --fix --quiet --ext .jsx,.js,.tsx,.ts './src/**/*.{ts,tsx,js,jsx}'
+
       - name: Run Prettier
         run: |
           npx prettier --write ${FILE_PATTERN}
@@ -20,12 +26,11 @@ jobs:
         with:
           commit_message: Apply CI Prettier Change
 
-  api-test:
-    runs-on: ubuntu-latest
 
+  api:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-
       - name: Setup Docker
         shell: bash
         run: |
@@ -33,6 +38,13 @@ jobs:
           docker-compose up -d
           sleep 30
           docker-compose run api rails db:create db:migrate
+        env:
+          RAILS_ENV: test
+
+      - name: Run Rubocop
+        shell: bash
+        run: |
+          docker-compose run api bundle exec rubocop
         env:
           RAILS_ENV: test
 
