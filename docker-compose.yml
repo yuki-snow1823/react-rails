@@ -32,7 +32,7 @@ services:
 
   front:
     build:
-      context: ./frontend/
+      context: ./frontend/app
       dockerfile: Dockerfile
     volumes:
       - ./frontend/app:/usr/src/app
