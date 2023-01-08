@@ -4,7 +4,7 @@ import { Sample } from "./sample";
 
 // 解説します（★１）
 const client = new ApolloClient({
-  uri: "http://localhost:3001/graphql",
+  uri: "https://railsapiyuki.herokuapp.com/graphql",
   cache: new InMemoryCache(),
 });
 
