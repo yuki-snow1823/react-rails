@@ -7,5 +7,6 @@ module Types
     def books
       Book.all
     end
+    # herokuのテスト
   end
 end
