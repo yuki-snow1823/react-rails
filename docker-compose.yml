@@ -37,6 +37,3 @@ services:
       - sh -c "yarn && yarn start"
     ports:
       - "4000:3000"
-
-volumes:
-  mysql-data:
