@@ -15,13 +15,12 @@ services:
 
   api:
     build:
-      context: ./backend/
-      dockerfile: Dockerfile
+    context: ./backend/
+    dockerfile: Dockerfile.dev
     command: bundle exec rails s -p 3000 -b '0.0.0.0'
     image: rails:dev
     volumes:
       - ./backend:/sample
-      - ./backend/vendor/bundle:/sample/vendor/bundle
     environment:
       TZ: Asia/Tokyo
       RAILS_ENV: development
